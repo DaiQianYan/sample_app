@@ -82,7 +82,7 @@ class UserTest < ActiveSupport::TestCase
 
   # 设置密码最小长度验证
   test "password should be present (nonblank)" do
-    @user.password = @user.password_confirmation = "a" * 6
+    @user.password = @user.password_confirmation = " " * 6
     assert_not @user.valid?
   end
 
