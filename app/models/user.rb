@@ -21,7 +21,8 @@ class User < ApplicationRecord
     
     # 设置用户密码密码
     has_secure_password
-    validates :password, presence: true, length: { minimum: 6 }
+    # Allowing empty passwords on update.
+    validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
     # Returns the hash digest of the given string
     def User.digest(string)

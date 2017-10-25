@@ -1,4 +1,15 @@
 class UsersController < ApplicationController
+  # Adding a logged_in_user before filter.
+  # before_action :logged_in_user, only: [:edit, :update]
+  # Requiring a logged-in user for the index action.
+  before_action :logged_in_user, only: [:index, :edit, :update]
+  # A before filter to protect the edit/update pages.
+  before_action :correct_user, only: [:edit, :update]
+
+  def index
+    # The user index action.
+    @users = User.all
+  end 
 
   # 到数据库查找用户并展示
   def show
@@ -24,6 +35,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  # The initial user update action.
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      # Handle a successfull update.
+      flash[:success] = "Profile updated"
+      redirect_to @user
+    else 
+      render 'edit'
+    end 
+  end 
+
   private
 
     def user_params
@@ -32,5 +59,25 @@ class UsersController < ApplicationController
                                    :password,
                                    :password_confirmation)
     end
+
+    # Before filters
+
+    # Confirms a logged-in user.
+    def logged_in_user
+      # Adding a logged_in_user before filter.
+      unless logged_in?
+        # Adding store_location to the logged-in user before fliter.
+        store_location
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end 
+    end 
+
+    # Confirms the correct user.
+    def correct_user
+      @user = User.find(params[:id])
+      # redirect_to(root_url) unless @user == current_user
+      redirect_to(root_url) unless current_user?(@user)
+    end 
 
 end
