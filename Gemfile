@@ -34,6 +34,13 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# Adding the Faker gem to the Gemfile.用来创造100个用户示例。
+gem 'faker'
+
+# Including will_paginate in the Gemfile.
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

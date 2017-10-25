@@ -2,11 +2,20 @@
 <% provide(:title, 'All users') %>
 <h1>All users</h1>
 
+<!-- The users index with pagination. -->
+<%= will_paginate %>
+
 <ul class="users">
   <% @users.each do |user| %>
-    <li>
+    <!-- <li>
       <%= gravatar_for user, size: 50 %>
       <%= link_to user.name, user %>
-    </li>
+    </li> -->
+    <!-- The first refactoring attempt in the index view. -->
+    <!-- <%= render user %> -->
+    <!-- The fully refactored users index. -->
+    <%= render @users %>
   <% end %>
 </ul>
+
+<%= will_paginate %>
