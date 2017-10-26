@@ -29,9 +29,11 @@ Rails.application.routes.draw do
 
   resources :users
   
-  # Adding a route for the Account Activations edit action.
+  # 11.1 Adding a route for the Account Activations edit action.
   resources :account_activations, only: [:edit]
   
+  # 13.30 Routes for the Microposts resource.
+  resources :microposts, only: [:create, :destroy]
   # root 'application#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

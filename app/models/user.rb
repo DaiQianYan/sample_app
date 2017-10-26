@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+    # 13.11 A user has_many microposts.
+    # has_many :microposts
+    # 13.19 Ensuring that a user's microposts are destroyed along with the user.
+    has_many :microposts, dependent: :destroy
     # attr_accessor :remember_token
     # Adding account activation code to the User model.
     attr_accessor :remember_token, :activation_token
