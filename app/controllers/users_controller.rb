@@ -34,8 +34,12 @@ class UsersController < ApplicationController
       # # Handle a successful save.
       # flash[:success] = "Welcome to the Sample App!"
       # redirect_to @user
+
+      # Sending email via the user model object.
+      @user.send_activation_email
+
       # Adding account activation to user signup.
-      UserMailer.account_activation(@user).deliver_now
+      # UserMailer.account_activation(@user).deliver_now
       flash[:info] = "Please check your email to activate your account"
       redirect_to root_url
     else

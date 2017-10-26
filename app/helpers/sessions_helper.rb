@@ -23,7 +23,7 @@ module SessionsHelper
         if (user_id = session[:user_id])
             # @current_user ||=User.find_by(id: session[:user_id])
             @current_user ||=User.find_by(id: user_id)
-            elsif (user_id = cookies.signed[:user_id])
+        elsif (user_id = cookies.signed[:user_id])
             # Raising an exception in an untested branch.
             # raise    # THe tests still pass, so this branch is currently untested.
             user = User.find_by(id: user_id)
