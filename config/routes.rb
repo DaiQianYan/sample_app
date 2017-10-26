@@ -29,6 +29,9 @@ Rails.application.routes.draw do
 
   resources :users
   
+  # Adding a route for the Account Activations edit action.
+  resources :account_activations, only: [:edit]
+  
   # root 'application#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
