@@ -1,3 +1,10 @@
-User#account_activation
+<!-- User#account_activation
 
-<%= @greeting %>, find me in app/views/user_mailer/account_activation.text.erb
+<%= @greeting %>, find me in app/views/user_mailer/account_activation.text.erb -->
+
+<!-- The account activation text view. -->
+Hi <%= @user.name %>,
+
+Welcome to the Sample App! Click on the link below to activate your account:
+
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>

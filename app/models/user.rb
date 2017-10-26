@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
     # 邮箱入库前规范格式，小写处理
     # before_save {self.email = email.downcase}   
-    before_save {email.downcase!}
+    # before_save {email.downcase!}
     
     # 设置用户名非空验证，长度限制
     # validates(:name, presence: true)
@@ -47,10 +47,17 @@ class User < ApplicationRecord
     end
 
     # Returns true if the given token matches the digest.
-    def authenticated?(remember_token)
-        return false if remember_digest.nil?
-        BCrypt::Password.new(remember_digest).is_password?(remember_token)
-    end
+    # def authenticated?(remember_token)
+    #     return false if remember_digest.nil?
+    #     BCrypt::Password.new(remember_digest).is_password?(remember_token)
+    # end
+
+    # A generalized authenticated? method.
+    def authenticated?(attribute, token)
+        digest = send("#{attribute}_digest")
+        return false if digest.nil?
+        BCrypt::Password.new(digest).is_password?(token)
+    end 
 
     # 删除session则忘记用户
     # Forgets a user.
