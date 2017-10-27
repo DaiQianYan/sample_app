@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
 
   post '/signup', to: 'users#create'
-
+  # Adding a resource to get the standard RESTful actions for sessions.
   get '/login', to: 'sessions#new'
 
   post '/login', to: 'sessions#create'
@@ -35,6 +35,9 @@ Rails.application.routes.draw do
   
   # 11.1 Adding a route for the Account Activations edit action.
   resources :account_activations, only: [:edit]
+
+  # Adding a resource for password resets.
+  resources :password_resets, only: [:new, :create, :edit, :update]
   
   # 13.30 Routes for the Microposts resource.
   resources :microposts, only: [:create, :destroy]

@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    # Finding and authenticating a user.
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       # # Log the user in and redirect to the user's show page.
@@ -26,8 +27,10 @@ class SessionsController < ApplicationController
         redirect_to root_url
       end
     else
+      # An (unsucessful) attempt at handling failed login.
       flash.now[:danger] = 'Invalid email/password combination' 
       # Create an error message.
+      # A preliminary version of the Session create action.
       render 'new'
     end
   end
