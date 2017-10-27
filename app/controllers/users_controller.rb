@@ -18,6 +18,8 @@ class UsersController < ApplicationController
   # 到数据库查找用户并展示
   def show
     @user = User.find(params[:id])
+    # 13.23 Adding an @microposts instance variable to the user show action.
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   # 创建新用户
@@ -80,17 +82,18 @@ class UsersController < ApplicationController
     end
 
     # Before filters
-
-    # Confirms a logged-in user.
-    def logged_in_user
-      # Adding a logged_in_user before filter.
-      unless logged_in?
-        # Adding store_location to the logged-in user before fliter.
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end 
-    end 
+    
+    # 13.33 The Users controller with the logged-in user filter removed.
+    # # Confirms a logged-in user.
+    # def logged_in_user
+    #   # Adding a logged_in_user before filter.
+    #   unless logged_in?
+    #     # Adding store_location to the logged-in user before fliter.
+    #     store_location
+    #     flash[:danger] = "Please log in."
+    #     redirect_to login_url
+    #   end 
+    # end 
 
     # Confirms the correct user.
     def correct_user

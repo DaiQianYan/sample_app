@@ -4,9 +4,11 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <!-- <%= form_for(@user, url: signup_path) do |f| %>
-      <%= render 'shared/error_messages' %>
-
+    <%= form_for(@user, url: signup_path) do |f| %>
+      <!-- 13.43 Updating the rendering of user signup errors. -->
+      <!-- <%= render 'shared/error_messages' %> -->
+      <%= render 'shared/error_messages', object: f.object %>
+      
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
 
@@ -20,7 +22,7 @@
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 
       <%= f.submit "Create my account", class: "btn btn-primary" %>
-    <% end %> -->
+    <% end %>
     <%= render 'form' %>
   </div>
 </div>

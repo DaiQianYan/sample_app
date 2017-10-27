@@ -1,4 +1,5 @@
 class PasswordResetsController < ApplicationController
+<<<<<<< HEAD
   # The edit action for password reset.
   before_action :get_user, only: [:edit, :update]
   before_action :valid_user, only: [:edit, :update]
@@ -65,3 +66,11 @@ class PasswordResetsController < ApplicationController
     end 
     
 end
+=======
+  def new
+  end
+
+  def edit
+  end
+end
+>>>>>>> user-microposts
